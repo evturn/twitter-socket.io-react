@@ -34,6 +34,19 @@ module.exports = TweetsApp = React.createClass({
 
   },
 
+  getPage: function(page){
+    var request = new XMLHttpRequest(), self = this;
+    request.open('GET', 'page/' + page + "/" + this.state.skip, true);
+    request.onload = function() {
+      if (request.status >= 200 && request.status < 400){
+        self.loadPagedTweets(JSON.parse(request.responseText));
+      } else {
+        self.setState({paging: false, done: true});
+      }
+    };
+    request.send();
+  },
+
   checkWindowScroll: function(){
     var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     var s = document.body.scrollTop;
