@@ -1,3 +1,5 @@
+/** @jsx React.DOM */
+
 var React = require('react');
 
 module.exports = Loader = React.createClass({

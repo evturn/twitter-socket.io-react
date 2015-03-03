@@ -6,7 +6,7 @@ var schema = new mongoose.Schema({
 	author 		: String,
 	avatar 		: String,
 	body	 		: String,
-	date	 		: Data,
+	date	 		: Date,
 	screename : String	
 });
 

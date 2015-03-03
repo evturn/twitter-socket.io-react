@@ -1,4 +1,4 @@
-var Tweet = require('../model/Tweet');
+var Tweet = require('../models/Tweet');
 
 module.exports = function(stream, io) {
 
