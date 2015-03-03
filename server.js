@@ -34,6 +34,9 @@ var server = http.createServer(app).listen(port, function() {
 
 var io = require('socket.io').listen(server);
 
-twit.stream('statuses/filter',{ track: 'isomorphic', '#isomorphic'}, function(stream) {
+twit.stream('statuses/filter',{
+	track: 'isomorphic',
+	'#isomorphic'
+}, function(stream) {
   streamHandler(stream,io);
 });
