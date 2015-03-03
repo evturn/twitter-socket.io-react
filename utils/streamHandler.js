@@ -5,7 +5,7 @@ module.exports = function(stream, io) {
 	// When tweets are received
 	stream.on('data', function(data) {
 
-		// Construct Tweet Object
+		// Construct Tweet object
 		var tweet = {
 			twid: data['id'],
 			active: false,
@@ -15,6 +15,16 @@ module.exports = function(stream, io) {
       date: data['created_at'],
       screenname: data['user']['screen_name']
 		}
+
+		// New model instance of Tweet object
+		var tweetEntry = newTweet(tweet);
+
+		// Save and socket.io emits tweet
+		tweetEntry.save(function(err) {
+			if (!err) {
+				io.emit('tweet', tweet);
+			}
+		});
 
 	});
 
