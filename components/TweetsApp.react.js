@@ -47,6 +47,21 @@ module.exports = TweetsApp = React.createClass({
     request.send();
   },
 
+  loadPagedTweets: function(tweets){
+    var self = this;
+    if(tweets.length > 0) {
+      var updated = this.state.tweets;
+      tweets.forEach(function(tweet){
+        updated.push(tweet);
+      });
+      setTimeout(function(){
+        self.setState({tweets: updated, paging: false});
+      }, 1000);
+    } else {
+      this.setState({done: true, paging: false});
+    }
+  },
+
   checkWindowScroll: function(){
     var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     var s = document.body.scrollTop;
