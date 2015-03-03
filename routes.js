@@ -26,6 +26,12 @@ module.exports = {
     });
   },
 
-  
+  page: function(req, res) {
 
-}
+    // Fetch tweets
+    Tweet.getTweets(req.params.page, req.params.skip, function(tweets) {
+      res.send(tweets);
+    });
+  }
+
+};
