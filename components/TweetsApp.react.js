@@ -19,7 +19,22 @@ module.exports = TweetsApp = React.createClass({
 
   },
 
-  // Set the initial component state
+  showNewTweets: function(){
+
+    // Current application state
+    var updated = this.state.tweets;
+
+    // Mark tweets active
+    updated.forEach(function(tweet){
+      tweet.active = true;
+    });
+
+    // Set application state (active tweets + reset unread count)
+    this.setState({tweets: updated, count: 0});
+
+  },
+
+  // Set initial component state
   getInitialState: function(props){
     props = props || this.props;
 
