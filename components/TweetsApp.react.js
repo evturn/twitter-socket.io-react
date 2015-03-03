@@ -34,6 +34,17 @@ module.exports = TweetsApp = React.createClass({
 
   },
 
+  checkWindowScroll: function(){
+    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    var s = document.body.scrollTop;
+    var scrolled = (h + s) > document.body.offsetHeight;
+
+    if(scrolled && !this.state.paging && !this.state.done) {
+      this.setState({paging: true, page: this.state.page + 1});
+      this.getPage(this.state.page);
+    }
+  },
+
   // Set initial component state
   getInitialState: function(props){
     props = props || this.props;
